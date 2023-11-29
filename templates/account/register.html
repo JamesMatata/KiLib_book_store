@@ -1,0 +1,32 @@
+{% extends "base.html" %}
+
+{% block title %}Sign Up{% endblock %}
+
+{% block content %}
+    <div class="formsDiv">
+        <h2 class="formTitle">Sign-Up</h2>
+        <hr>
+        <p class="formInstructions">Fill the form below to sign up</p>
+        {% if messages %}
+            {% for message in messages %}
+                <div class="alert alert-primary" alert="{{ message.tags }}" role="alert">
+                    {{message}}
+                </div>
+            {% endfor %}
+        {% endif %}
+        <form action="" method="POST">
+            {% csrf_token %}
+            <input class="inputs" type="text" placeholder="Enter your first name" value="{{ data.fname }}" name="fname"/><br>
+            <input class="inputs" type="text" placeholder="Enter your last name" value="{{ data.sname }}" name="sname"/><br>
+            <input class="inputs" type="text" placeholder="Create a username" value="{{ data.uname }}" name="uname"/><br>
+            <input class="inputs" type="email" placeholder="Enter your email" value="{{ data.email }}" name="email"/><br>
+            <input class="inputs" type="password" placeholder="Create a password" name="pass"/>
+            <input class="inputs" type="password" placeholder="Confirm password" name="pass2"/><br>
+
+            <button type="submit" class="formButton">Register</button>
+            <p style="text-align: center;font-size: 14px">
+                Already have an account? <a href="{%  url 'account:login-page' %}" style="text-decoration: none;color: red">login</a>
+            </p>
+        </form>
+    </div>
+{% endblock %}
